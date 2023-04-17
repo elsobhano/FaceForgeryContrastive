@@ -18,9 +18,9 @@ def get_requirements(file_path:str)->List[str]:
     return requirements
 
 setup(
-    name="mlproject",
+    name="Face Foregery Detection",
     version='0.0.1',
-    author='Sobhan',
+    author='Sobhan Asasi',
     author_email='sobhan23578@gmail.com',
     packages=find_packages(),
     install_requires=get_requirements('requirements.txt'),
