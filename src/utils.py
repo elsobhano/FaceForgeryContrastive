@@ -27,17 +27,6 @@ class AverageMeter():
         self.count += n
         self.avg = self.sum / self.count
 
-def set_optimizer(model, learning_rate, momentum, weight_decay):
-    optimizer = optim.SGD(model.parameters(),
-                          lr=learning_rate,
-                          momentum=momentum,
-                          weight_decay=weight_decay)
-#     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
-    optimizer = optim.Adamax(model.parameters(),  lr=1e-3, eps=1e-4, weight_decay=1e-4)
-
-    return optimizer
-
-
 def save_model(model, optimizer, epoch, save_file):
     print('==> Saving...')
     state = {
