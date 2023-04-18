@@ -6,6 +6,7 @@ import torch.nn.functional as F
 from components.modules.attention import ChannelAttention, SpatialAttention, DualCrossModalAttention
 from components.modules.srm_conv import SRMConv2d_simple, SRMConv2d_Separate
 from networks.xception import TransferModel
+print('Hello')
 
 class SRMPixelAttention(nn.Module):
     def __init__(self, in_channels):
