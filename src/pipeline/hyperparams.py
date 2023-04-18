@@ -13,7 +13,7 @@ hypers = {
     'momentum': 0.9,
 
     # Dataset
-    'dataset': 'faceforensic',
+    'dataset': 'ffpp',
     'temp': 0.07,
 
     #method

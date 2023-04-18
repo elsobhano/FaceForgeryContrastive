@@ -3,7 +3,7 @@ from torchvision import transforms, datasets
 from PIL import Image
 
 from dataclasses import dataclass
-from dataingestion import DataIngest
+from src.components.Data.dataingestion import DataIngest
 from src.utils import TwoCropTransform
 
 @dataclass

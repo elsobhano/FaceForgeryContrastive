@@ -3,10 +3,9 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from components.modules.attention import ChannelAttention, SpatialAttention, DualCrossModalAttention
-from components.modules.srm_conv import SRMConv2d_simple, SRMConv2d_Separate
-from networks.xception import TransferModel
-print('Hello')
+from src.components.modules.attention import ChannelAttention, SpatialAttention, DualCrossModalAttention
+from src.components.modules.srm_conv import SRMConv2d_simple, SRMConv2d_Separate
+from src.components.networks.xception import TransferModel
 
 class SRMPixelAttention(nn.Module):
     def __init__(self, in_channels):

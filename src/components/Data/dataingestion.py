@@ -5,7 +5,7 @@ from src.logger import logging
 import pandas as pd
 from dataclasses import dataclass
 import json
-from typing import Literal
+# from typing import Literal
 
 @dataclass
 class DataIngestConfig:
@@ -43,9 +43,9 @@ class DataIngest:
         except Exception as e:
             raise CustomExeption(e, sys)
     
-    MODE = Literal['Original', 'Deepfakes', 'Face2Face', 'FaceSwap', 'NeuralTextures']
-    def idx_to_path(self, cat: MODE, indexes: list) -> pd.DataFrame:
-        root = 'notebook/dataset/c23'
+    # MODE = Literal['Original', 'Deepfakes', 'Face2Face', 'FaceSwap', 'NeuralTextures']
+    def idx_to_path(self, cat, indexes: list) -> pd.DataFrame:
+        root = 'notebook/dataset/dataset/Dataset/c23'
         data_frame = {'path':[]}
         path = root + '/{}'.format(cat)
         for idx in indexes:

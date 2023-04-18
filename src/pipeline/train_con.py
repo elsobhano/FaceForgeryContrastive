@@ -4,26 +4,28 @@ from torch.utils.tensorboard import SummaryWriter
 
 import sys
 import os
-import datatime
+from datetime import datetime
 import time
 import gc
 
-from hyperparams import hypers
-from components.Data.dataingestion import DataIngest
-from components.Data.dataloader import DataIngestConfig, MyDataset
-from components.model_core.model import Two_Stream_Net
-from components.Losses.ConLoss import SupConLoss
+from src.exception import CustomExeption
+from src.pipeline.hyperparams import hypers
+from src.components.Data.dataingestion import DataIngest
+from src.components.Data.dataloader import DataIngestConfig, MyDataset
+from src.components.model_core.model import Two_Stream_Net
+from src.components.Losses.ConLoss import SupConLoss
 from src.utils import AverageMeter, save_model
 
 
 def save_path(hypers):
 
-    model_path = './save/SupCon/{}_models'.format(hypers.get('dataset'))
-    tb_path = './save/SupCon/{}_tensorboard'.format(hypers.get('dataset'))
+    model_path = 'src\save\SupCon\{}_models'.format(hypers.get('dataset'))
+    tb_path = 'src\save\SupCon\{}_tensorboard'.format(hypers.get('dataset'))
     lr_decay_epochs = [int(it) for it in hypers.get('lr_decay_epochs').split(',')]
 
 
-    save_time = str(datetime.datetime.now())
+    save_time = f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}"
+    print(save_time)
     model_name = '{}_{}_{}_{}_lr_{}_decay_{}_epochs_{}_bsz_{}_temp_{}'.\
             format(save_time, hypers.get('method'), hypers.get('dataset'), hypers.get('model'), hypers.get('learning_rate'),
                 hypers.get('weight_decay'), hypers.get('epochs') , hypers.get('batch_size'), hypers.get('temp'))
@@ -47,6 +49,7 @@ def set_loader():
     OR_train_dataset = MyDataset(Config.OR_train_data)
 
     train_dataset = torch.utils.data.ConcatDataset([DF_train_dataset, F2F_train_dataset, FS_train_dataset, OR_train_dataset, OR_train_dataset, OR_train_dataset])
+    print(len(train_dataset))
     train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=hypers.get('batch_size'), shuffle=True)
     return train_loader
 
